@@ -38,15 +38,12 @@ class Curso(models.Model):
     codigo = models.CharField(max_length=10, primary_key=True)
     nombre = models.CharField(max_length=50, null=False)
     version = models.IntegerField()
-    # profesor = models.ForeignKey(
-    #     Profesor, 
-    #     related_name='cursos', 
-        
-    # )
-    # estudiante = models.ManyToManyField(
-    #     Estudiante, 
-    #     related_name='curso',
-    #      on_delete=models.CASCADE,
-    # )
-    profesor = models.ForeignKey('Profesor', on_delete=models.CASCADE)
-    estudiantes = models.ManyToManyField('Estudiante', related_name='cursos')
+    profesor = models.ForeignKey(
+        Profesor, 
+        related_name='cursos', 
+        on_delete=models.CASCADE, null=True
+    )
+    estudiante = models.ManyToManyField(
+        Estudiante, 
+        related_name='cursos'
+    )
